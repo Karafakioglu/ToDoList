@@ -38,31 +38,68 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, `*{
-    display: none;
+___CSS_LOADER_EXPORT___.push([module.id, `/* Basic CSS Reset */
+
+html {
+    box-sizing: border-box;
+    font-size: 16px;
 }
 
-body{
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body, h1, h2, h3, h4, h5, h6, p, ol, ul {
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+    color: white;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.wrapper{
     display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    grid-template-rows: repeat(10, 1fr);
+    grid-template-columns: 20fr 85fr;
+    grid-template-rows: 20fr 85fr;
+    height: 100vh;
+    width: 100vw;
 }
 
 .header{
-    background-color: black;
-    grid-column-start: 0;
-    grid-column-end: 10;
-    grid-row-start: 0;
-    grid-row-end: 10;
+    background-color: #333;
+    grid-column: 1/3;
+    grid-row: 1/2;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
 }
 
 .sidebar{
-    background-color: white;
+    background-color: #ddd;
+    grid-column: 1/2;
+    grid-row: 2/3;
 }
 
 .main{
-    background-color: gray;
-}`, "",{"version":3,"sources":["webpack://./src/styles/main.css"],"names":[],"mappings":"AAAA;IACI,aAAa;AACjB;;AAEA;IACI,aAAa;IACb,sCAAsC;IACtC,mCAAmC;AACvC;;AAEA;IACI,uBAAuB;IACvB,oBAAoB;IACpB,mBAAmB;IACnB,iBAAiB;IACjB,gBAAgB;AACpB;;AAEA;IACI,uBAAuB;AAC3B;;AAEA;IACI,sBAAsB;AAC1B","sourcesContent":["*{\n    display: none;\n}\n\nbody{\n    display: grid;\n    grid-template-columns: repeat(10, 1fr);\n    grid-template-rows: repeat(10, 1fr);\n}\n\n.header{\n    background-color: black;\n    grid-column-start: 0;\n    grid-column-end: 10;\n    grid-row-start: 0;\n    grid-row-end: 10;\n}\n\n.sidebar{\n    background-color: white;\n}\n\n.main{\n    background-color: gray;\n}"],"sourceRoot":""}]);
+    grid-column: 2/4;
+    grid-row: 2/3;
+}
+
+#logo{
+    height: 100px;
+    width: 100px;
+}
+`, "",{"version":3,"sources":["webpack://./src/styles/main.css"],"names":[],"mappings":"AAAA,oBAAoB;;AAEpB;IACI,sBAAsB;IACtB,eAAe;AACnB;;AAEA;IACI,mBAAmB;AACvB;;AAEA;IACI,SAAS;IACT,UAAU;IACV,mBAAmB;IACnB,YAAY;AAChB;;AAEA;IACI,gBAAgB;AACpB;;AAEA;IACI,eAAe;IACf,YAAY;AAChB;;AAEA;IACI,aAAa;IACb,gCAAgC;IAChC,6BAA6B;IAC7B,aAAa;IACb,YAAY;AAChB;;AAEA;IACI,sBAAsB;IACtB,gBAAgB;IAChB,aAAa;IACb,aAAa;IACb,sBAAsB;IACtB,mBAAmB;IACnB,SAAS;IACT,aAAa;AACjB;;AAEA;IACI,sBAAsB;IACtB,gBAAgB;IAChB,aAAa;AACjB;;AAEA;IACI,gBAAgB;IAChB,aAAa;AACjB;;AAEA;IACI,aAAa;IACb,YAAY;AAChB","sourcesContent":["/* Basic CSS Reset */\n\nhtml {\n    box-sizing: border-box;\n    font-size: 16px;\n}\n\n*, *:before, *:after {\n    box-sizing: inherit;\n}\n\nbody, h1, h2, h3, h4, h5, h6, p, ol, ul {\n    margin: 0;\n    padding: 0;\n    font-weight: normal;\n    color: white;\n}\n\nol, ul {\n    list-style: none;\n}\n\nimg {\n    max-width: 100%;\n    height: auto;\n}\n\n.wrapper{\n    display: grid;\n    grid-template-columns: 20fr 85fr;\n    grid-template-rows: 20fr 85fr;\n    height: 100vh;\n    width: 100vw;\n}\n\n.header{\n    background-color: #333;\n    grid-column: 1/3;\n    grid-row: 1/2;\n    display: flex;\n    justify-content: start;\n    align-items: center;\n    gap: 1rem;\n    padding: 1rem;\n}\n\n.sidebar{\n    background-color: #ddd;\n    grid-column: 1/2;\n    grid-row: 2/3;\n}\n\n.main{\n    grid-column: 2/4;\n    grid-row: 2/3;\n}\n\n#logo{\n    height: 100px;\n    width: 100px;\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -509,13 +546,23 @@ module.exports = styleTagTransform;
 
 /***/ }),
 
-/***/ "./src/assets/well.svg":
+/***/ "./src/assets/logo.svg":
 /*!*****************************!*\
-  !*** ./src/assets/well.svg ***!
+  !*** ./src/assets/logo.svg ***!
   \*****************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-module.exports = __webpack_require__.p + "well.svg";
+module.exports = __webpack_require__.p + "logo.svg";
+
+/***/ }),
+
+/***/ "./src/assets/project-logo.svg":
+/*!*************************************!*\
+  !*** ./src/assets/project-logo.svg ***!
+  \*************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = __webpack_require__.p + "project-logo.svg";
 
 /***/ })
 
@@ -636,13 +683,19 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _main__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./main */ "./src/main.js");
 /* harmony import */ var _styles_main_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styles/main.css */ "./src/styles/main.css");
-/* harmony import */ var _assets_well_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./assets/well.svg */ "./src/assets/well.svg");
+/* harmony import */ var _assets_logo_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./assets/logo.svg */ "./src/assets/logo.svg");
+/* harmony import */ var _assets_project_logo_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./assets/project-logo.svg */ "./src/assets/project-logo.svg");
 
 
 
+
+var logoImg = document.getElementById('logo');
+logoImg.src = _assets_logo_svg__WEBPACK_IMPORTED_MODULE_2__;
+var test = document.getElementById('project-icon');
+test.src = _assets_project_logo_svg__WEBPACK_IMPORTED_MODULE_3__;
 (0,_main__WEBPACK_IMPORTED_MODULE_0__["default"])();
 })();
 
 /******/ })()
 ;
-//# sourceMappingURL=bundlee183e94bbd36b6139123.js.map
+//# sourceMappingURL=bundlecb2549accb20e2c72cae.js.map
