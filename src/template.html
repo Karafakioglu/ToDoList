@@ -1,31 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= htmlWebpackPlugin.options.title %></title>
+    <title>
+        <%= htmlWebpackPlugin.options.title %>
+    </title>
 </head>
+
 <body>
     <div class="wrapper">
         <div class="header">
-                <img alt="image of logo" id="logo">
-                <h1 id="application-text">To Do Application</h1>
+            <img alt="image of logo" id="logo">
+            <h1 id="application-text">To Do Application</h1>
         </div>
         <div class="sidebar">
             <div class="projects">
                 <h1>Projects</h1>
-                <button class="project">
-                    <img class="project-logo">
-                    <span class="project-name">Project 1</span>
-                </button>
-                <button class="project">
-                    <img class="project-logo">
-                    <span class="project-name">Project 2</span>
-                </button>
-                <button id="new-project">
-                    <img id="new-project-logo">
-                    <span>Add New Project</span>
-                </button>
+                <div class="project">
+                    <button class="project-button">
+                        <img class="project-logo">
+                        <span class="project-name">Project 1</span>
+                    </button>
+                    <button class="delete-project">
+                        <img class="delete-logo">
+                    </button>
+                </div>
+                <div class="project">
+                    <button class="project-button">
+                        <img class="project-logo">
+                        <span class="project-name">Project 1</span>
+                    </button>
+                    <button class="delete-project">
+                        <img class="delete-logo">
+                    </button>
+                </div>
+                <div id="new-project-div">
+                    <button class="new-project-button">
+                        <img id="new-project-logo">
+                        <span>Add New Project</span>
+                    </button>
+                    
+                </div>
             </div>
         </div>
         <div class="main">
@@ -33,4 +50,5 @@
         </div>
     </div>
 </body>
+
 </html>

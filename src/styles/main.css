@@ -70,24 +70,31 @@ button {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    justify-content: start;
-    align-items: start;
-    font-size: 1.5rem;
     padding: 1rem;
+    font-size: 1.5rem;
 }
 
-.projects > button{
+.project{
     display: flex;
-    align-items: center;
-    gap: 0.5rem;
+    justify-content: space-between;
+}
+
+.projects div button{
+    display: flex;
     font-size: 1.25rem;
-    width: 100%;
+    gap: 0.5rem;
     padding: 0.5rem;
 }
 
+.projects div:hover{
+    background-color: rgb(109, 109, 109);
+    border-radius: 0.5rem;
+}
 
+.projects .project:hover .delete-logo {
+    display: block; /* or inline, inline-block, etc. */
+}
 
-.projects > button:hover{
-    background-color: rgb(155, 154, 154);
-    border-radius: 10px;
+.delete-logo{
+    display: none;
 }
