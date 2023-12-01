@@ -2,20 +2,20 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/generateJoke.js":
-/*!*****************************!*\
-  !*** ./src/generateJoke.js ***!
-  \*****************************/
+/***/ "./src/main.js":
+/*!*********************!*\
+  !*** ./src/main.js ***!
+  \*********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-function generateJoke() {
-  return "This is a funny joke";
+function helloWorld() {
+  return console.log("hello world");
 }
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (generateJoke);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (helloWorld);
 
 /***/ }),
 
@@ -39,8 +39,30 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, `*{
-    background-color: red;
-}`, "",{"version":3,"sources":["webpack://./src/styles/main.css"],"names":[],"mappings":"AAAA;IACI,qBAAqB;AACzB","sourcesContent":["*{\n    background-color: red;\n}"],"sourceRoot":""}]);
+    display: none;
+}
+
+body{
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+}
+
+.header{
+    background-color: black;
+    grid-column-start: 0;
+    grid-column-end: 10;
+    grid-row-start: 0;
+    grid-row-end: 10;
+}
+
+.sidebar{
+    background-color: white;
+}
+
+.main{
+    background-color: gray;
+}`, "",{"version":3,"sources":["webpack://./src/styles/main.css"],"names":[],"mappings":"AAAA;IACI,aAAa;AACjB;;AAEA;IACI,aAAa;IACb,sCAAsC;IACtC,mCAAmC;AACvC;;AAEA;IACI,uBAAuB;IACvB,oBAAoB;IACpB,mBAAmB;IACnB,iBAAiB;IACjB,gBAAgB;AACpB;;AAEA;IACI,uBAAuB;AAC3B;;AAEA;IACI,sBAAsB;AAC1B","sourcesContent":["*{\n    display: none;\n}\n\nbody{\n    display: grid;\n    grid-template-columns: repeat(10, 1fr);\n    grid-template-rows: repeat(10, 1fr);\n}\n\n.header{\n    background-color: black;\n    grid-column-start: 0;\n    grid-column-end: 10;\n    grid-row-start: 0;\n    grid-row-end: 10;\n}\n\n.sidebar{\n    background-color: white;\n}\n\n.main{\n    background-color: gray;\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -612,15 +634,15 @@ var __webpack_exports__ = {};
   !*** ./src/index.js ***!
   \**********************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _generateJoke__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./generateJoke */ "./src/generateJoke.js");
+/* harmony import */ var _main__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./main */ "./src/main.js");
 /* harmony import */ var _styles_main_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styles/main.css */ "./src/styles/main.css");
 /* harmony import */ var _assets_well_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./assets/well.svg */ "./src/assets/well.svg");
 
 
 
-console.log((0,_generateJoke__WEBPACK_IMPORTED_MODULE_0__["default"])());
+(0,_main__WEBPACK_IMPORTED_MODULE_0__["default"])();
 })();
 
 /******/ })()
 ;
-//# sourceMappingURL=bundle383bc86b57a2eca06398.js.map
+//# sourceMappingURL=bundlee183e94bbd36b6139123.js.map
