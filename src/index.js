@@ -1,5 +1,8 @@
 import helloWorld from "./main";
 import './styles/main.css'
-import well from './assets/well.svg'
+import logo from './assets/logo.svg'
+
+const logoImg = document.getElementById('logo');
+logoImg.src = logo;
 
 helloWorld();
