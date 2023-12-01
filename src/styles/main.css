@@ -24,6 +24,12 @@ img {
     height: auto;
 }
 
+button {
+    padding: 0;
+    border: none;
+    background: none;
+}
+
 .wrapper{
     display: grid;
     grid-template-columns: 20fr 85fr;
@@ -66,25 +72,22 @@ img {
     gap: 1rem;
     justify-content: start;
     align-items: start;
-    padding-left: 3rem;
-    padding-right: 3rem;
-    padding-top: 3rem;
     font-size: 1.5rem;
+    padding: 1rem;
 }
 
-.project{
+.projects > button{
     display: flex;
     align-items: center;
     gap: 0.5rem;
     font-size: 1.25rem;
     width: 100%;
+    padding: 0.5rem;
 }
 
-#new-project{
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 1.25rem;
-    width: 100%;
-}
 
+
+.projects > button:hover{
+    background-color: rgb(155, 154, 154);
+    border-radius: 10px;
+}
