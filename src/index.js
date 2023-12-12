@@ -73,7 +73,7 @@ const projectsElem = document.querySelector("[data-projects]");
 let projects = ["Project 1", "Project 2"];
 
 function render() {
-  // clearElement(projectsElem);
+  clearElement(projectsElem);
   projects.forEach((project) => {
     const projectDiv = document.createElement("div");
     const projectBtnLeft = document.createElement("button");
@@ -105,11 +105,11 @@ function render() {
   });
 }
 
-// function clearElement(element) {
-//   while (element.firstChild) {
-//     console.log(element.firstChild);
-//     element.removeChild(element.firstChild);
-//   }
-// }
+function clearElement(element) {
+  while (element.firstChild) {
+    console.log(element.firstChild);
+    element.removeChild(element.firstChild);
+  }
+}
 
-// render();
+render();
