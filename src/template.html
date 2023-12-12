@@ -1,72 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= htmlWebpackPlugin.options.title %></title>
+  </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        <%= htmlWebpackPlugin.options.title %>
-    </title>
-</head>
-
-<body>
+  <body>
     <div class="wrapper">
-        <div class="header">
-            <img alt="image of logo" id="logo">
-            <h1 id="application-text">To Do Application</h1>
-        </div>
-        <div class="sidebar">
-            <div class="projects">
-                <h1>Projects</h1>
-                <div class="project">
-                    <button class="project-button left">
-                        <img class="project-logo">
-                        <span class="project-name">Project 1</span>
-                    </button>
-                    <button class="delete-project right">
-                        <img class="delete-logo">
-                    </button>
-                </div>
-                <div class="project">
-                    <button class="project-button left">
-                        <img class="project-logo">
-                        <span class="project-name">Project 1</span>
-                    </button>
-                    <button class="delete-project right">
-                        <img class="delete-logo">
-                    </button>
-                </div>
-                <div id="new-project-div">
-                    <button class="new-project-button">
-                        <img id="new-project-logo">
-                        <span>Add New Project</span>
-                    </button>
-                    
-                </div>
+      <div class="header">
+        <img alt="image of logo" id="logo" />
+        <h1 id="application-text">To Do Application</h1>
+      </div>
+      <div class="sidebar">
+        <div class="projects" data-projects>
+          <h1>Projects</h1>
+          <div class="project">
+            <button class="project-button left">
+              <img class="project-logo" />
+              <span class="project-name">Project 1</span>
+            </button>
+            <button class="delete-project right">
+              <img class="delete-logo" />
+            </button>
+          </div>
+          <div class="project">
+            <button class="project-button left">
+              <img class="project-logo" />
+              <span class="project-name">Project 1</span>
+            </button>
+            <button class="delete-project right">
+              <img class="delete-logo" />
+            </button>
+          </div>
+          <div id="new-project-div">
+            <button class="new-project-button">
+              <img class="new-project-logo" />
+              <span>Add New Project</span>
+            </button>
+          </div>
+          <div id="new-project-form">
+            <input type="text" id="input-add-project-popup" />
+            <div id="new-project-buttons-popup">
+              <button id="project-add-button-popup">Add</button>
+              <button id="project-cancel-button-popup">Cancel</button>
             </div>
+          </div>
         </div>
-        <div class="main">
-            <h1>Project Name</h1>
-            <div class="task">
-                <button class="task-done-button left">
-                    <img class="done-logo">
-                    <span class="task-name">Task</span>
-                </button>
-                <button class="delete-task right">
-                    <img class="delete-task-logo">
-                </button>
-            </div>
-            <div class="task">
-                <button class="task-done-button left">
-                    <img class="done-logo">
-                    <span class="task-name">Task</span>
-                </button>
-                <button class="delete-task right">
-                    <img class="delete-task-logo">
-                </button>
-            </div>
+      </div>
+      <div class="main">
+        <h1>Project Name</h1>
+        <div class="task">
+          <button class="task-done-button left">
+            <img class="done-logo" />
+            <span class="task-name">Task</span>
+          </button>
+          <button class="delete-task right">
+            <img class="delete-task-logo" />
+          </button>
         </div>
+        <div class="task">
+          <button class="task-done-button left">
+            <img class="done-logo" />
+            <span class="task-name">Task</span>
+          </button>
+          <button class="delete-task right">
+            <img class="delete-task-logo" />
+          </button>
+        </div>
+        <div class="new-task">
+          <button class="">
+            <img class="new-project-logo" />
+            <span>Add new task</span>
+          </button>
+        </div>
+      </div>
     </div>
-</body>
-
+  </body>
 </html>

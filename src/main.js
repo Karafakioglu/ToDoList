@@ -1,4 +1,6 @@
-function helloWorld(){
-    return console.log("hello world");
+function helloWorld() {
+  return console.log("hello world");
 }
-export default helloWorld
+
+
+export default helloWorld;
