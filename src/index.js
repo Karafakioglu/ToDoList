@@ -66,7 +66,7 @@ deleteTaskButtonElems.forEach((elem) => {
   });
 });
 
-// helloWorld();
+//Project rendering
 
 const projectsElem = document.querySelector("[data-projects]");
 
@@ -104,6 +104,8 @@ function render() {
     deleteLogoImg.src = deleteProjectLogo;
   });
 }
+
+//clearing all projects
 
 function clearElement(element) {
   while (element.firstChild) {
