@@ -65,3 +65,5 @@ deleteTaskButtonElems.forEach((elem) => {
     alert("you clicked on task delete button");
   });
 });
+
+// helloWorld();
