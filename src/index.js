@@ -67,3 +67,49 @@ deleteTaskButtonElems.forEach((elem) => {
 });
 
 // helloWorld();
+
+const projectsElem = document.querySelector("[data-projects]");
+
+let projects = ["Project 1", "Project 2"];
+
+function render() {
+  // clearElement(projectsElem);
+  projects.forEach((project) => {
+    const projectDiv = document.createElement("div");
+    const projectBtnLeft = document.createElement("button");
+    const projectLogoImg = document.createElement("img");
+    const projectSpan = document.createElement("span");
+    const projectBtnRight = document.createElement("button");
+    const deleteLogoImg = document.createElement("img");
+
+    projectDiv.classList.add("project");
+    projectBtnLeft.classList.add("project-button");
+    projectBtnLeft.classList.add("left");
+    projectLogoImg.classList.add("project-logo");
+    projectSpan.classList.add("project-name");
+    projectBtnRight.classList.add("delete-project");
+    projectBtnRight.classList.add("right");
+    deleteLogoImg.classList.add("delete-logo");
+
+    projectSpan.innerText = project;
+
+    projectsElem.appendChild(projectDiv);
+    projectDiv.appendChild(projectBtnLeft);
+    projectDiv.appendChild(projectBtnRight);
+    projectBtnLeft.appendChild(projectLogoImg);
+    projectBtnLeft.appendChild(projectSpan);
+    projectBtnRight.appendChild(deleteLogoImg);
+
+    projectLogoImg.src = projectLogo;
+    deleteLogoImg.src = deleteProjectLogo;
+  });
+}
+
+// function clearElement(element) {
+//   while (element.firstChild) {
+//     console.log(element.firstChild);
+//     element.removeChild(element.firstChild);
+//   }
+// }
+
+// render();
