@@ -69,8 +69,40 @@ deleteTaskButtonElems.forEach((elem) => {
 //Project rendering
 
 const projectsElem = document.querySelector("[data-projects]");
+const newProjectAddButton = document.getElementById("project-add-button-popup");
+const newProjectCancelButton = document.getElementById(
+  "project-cancel-button-popup"
+);
+const newProjectInput = document.querySelector("[data-new-project-input]");
 
-let projects = ["Project 1", "Project 2"];
+let projects = [
+  {
+    id: 1,
+    name: "Project 1",
+  },
+  {
+    id: 2,
+    name: "Project 2",
+  },
+];
+
+newProjectAddButton.addEventListener("click", (e) => {
+  e.preventDefault();
+  let projectName = newProjectInput.value;
+  if (projectName == null || projectName === "") {
+    alert("Please enter a project name to add!");
+    return;
+  } else {
+    const project = createProject(projectName);
+    newProjectInput.value = null;
+    projects.push(project);
+    render();
+  }
+});
+
+function createProject(name) {
+  return { id: Date.now().toString(), name: name, tasks: [] };
+}
 
 function render() {
   clearElement(projectsElem);
@@ -83,6 +115,7 @@ function render() {
     const deleteLogoImg = document.createElement("img");
 
     projectDiv.classList.add("project");
+    projectDiv.dataset.projectId = project.id;
     projectBtnLeft.classList.add("project-button");
     projectBtnLeft.classList.add("left");
     projectLogoImg.classList.add("project-logo");
@@ -91,7 +124,7 @@ function render() {
     projectBtnRight.classList.add("right");
     deleteLogoImg.classList.add("delete-logo");
 
-    projectSpan.innerText = project;
+    projectSpan.innerText = project.name;
 
     projectsElem.appendChild(projectDiv);
     projectDiv.appendChild(projectBtnLeft);
@@ -109,7 +142,6 @@ function render() {
 
 function clearElement(element) {
   while (element.firstChild) {
-    console.log(element.firstChild);
     element.removeChild(element.firstChild);
   }
 }
