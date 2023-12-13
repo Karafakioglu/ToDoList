@@ -76,18 +76,29 @@ const newProjectCancelButton = document.getElementById(
 const newProjectInput = document.querySelector("[data-new-project-input]");
 const LOCAL_STORAGE_PROJECT_KEY = "projects.project";
 const LOCAL_STORAGE_SELECTED_PROJECT_ID_KEY = "projects.selectedProjectId";
-const projects =
+let projects =
   JSON.parse(localStorage.getItem(LOCAL_STORAGE_PROJECT_KEY)) || [];
 let selectedProjectId = localStorage.getItem(
   LOCAL_STORAGE_SELECTED_PROJECT_ID_KEY
 );
 
 projectsElem.addEventListener("click", (e) => {
-  console.log(e.target.closest(".project"));
+
   if (e.target.closest(".project")) {
     selectedProjectId = e.target.closest(".project").dataset.projectId;
     saveAndRender();
   }
+});
+
+projectsElem.addEventListener("click", (e) => {
+  if (e.target.closest(".delete-project")) {
+    console.log(e.target.closest(".project").dataset.projectId);
+    let projectId = e.target.closest(".project").dataset.projectId;
+    projects = projects.filter((project) => project.id !== selectedProjectId);
+    selectedProjectId = null;
+    saveAndRender();
+  }
+
 });
 
 newProjectAddButton.addEventListener("click", (e) => {
