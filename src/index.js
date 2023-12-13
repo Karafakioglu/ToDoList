@@ -115,6 +115,10 @@ function saveAndRender() {
 
 function save() {
   localStorage.setItem(LOCAL_STORAGE_PROJECT_KEY, JSON.stringify(projects));
+  localStorage.setItem(
+    LOCAL_STORAGE_SELECTED_PROJECT_ID_KEY,
+    selectedProjectId
+  );
 }
 
 function render() {
