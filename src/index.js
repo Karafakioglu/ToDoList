@@ -75,8 +75,20 @@ const newProjectCancelButton = document.getElementById(
 );
 const newProjectInput = document.querySelector("[data-new-project-input]");
 const LOCAL_STORAGE_PROJECT_KEY = "projects.project";
+const LOCAL_STORAGE_SELECTED_PROJECT_ID_KEY = "projects.selectedProjectId";
 const projects =
   JSON.parse(localStorage.getItem(LOCAL_STORAGE_PROJECT_KEY)) || [];
+let selectedProjectId = localStorage.getItem(
+  LOCAL_STORAGE_SELECTED_PROJECT_ID_KEY
+);
+
+projectsElem.addEventListener("click", (e) => {
+  console.log(e.target.closest(".project"));
+  if (e.target.closest(".project")) {
+    selectedProjectId = e.target.closest(".project").dataset.projectId;
+    saveAndRender();
+  }
+});
 
 newProjectAddButton.addEventListener("click", (e) => {
   e.preventDefault();
@@ -117,6 +129,10 @@ function render() {
 
     projectDiv.classList.add("project");
     projectDiv.dataset.projectId = project.id;
+    if (project.id === selectedProjectId) {
+      projectDiv.classList.add("selected-project");
+    }
+
     projectBtnLeft.classList.add("project-button");
     projectBtnLeft.classList.add("left");
     projectLogoImg.classList.add("project-logo");
