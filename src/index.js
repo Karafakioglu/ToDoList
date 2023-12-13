@@ -74,17 +74,9 @@ const newProjectCancelButton = document.getElementById(
   "project-cancel-button-popup"
 );
 const newProjectInput = document.querySelector("[data-new-project-input]");
-
-let projects = [
-  {
-    id: 1,
-    name: "Project 1",
-  },
-  {
-    id: 2,
-    name: "Project 2",
-  },
-];
+const LOCAL_STORAGE_PROJECT_KEY = "project";
+const projects =
+  JSON.parse(localStorage.getItem(LOCAL_STORAGE_PROJECT_KEY)) || [];
 
 newProjectAddButton.addEventListener("click", (e) => {
   e.preventDefault();
@@ -96,12 +88,21 @@ newProjectAddButton.addEventListener("click", (e) => {
     const project = createProject(projectName);
     newProjectInput.value = null;
     projects.push(project);
-    render();
+    saveAndRender();
   }
 });
 
 function createProject(name) {
   return { id: Date.now().toString(), name: name, tasks: [] };
+}
+
+function saveAndRender() {
+  save();
+  render();
+}
+
+function save() {
+  localStorage.setItem(LOCAL_STORAGE_PROJECT_KEY, JSON.stringify(projects));
 }
 
 function render() {
