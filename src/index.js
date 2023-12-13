@@ -47,11 +47,6 @@ deleteLogoElems.forEach((elem) => {
   });
 });
 
-const newProjectButtonElem = document.getElementById("new-project-div");
-newProjectButtonElem.addEventListener("click", (e) => {
-  alert("You clicked on  add new project button");
-});
-
 const taskDoneButtonElems = document.querySelectorAll(".task-done-button");
 taskDoneButtonElems.forEach((elem) => {
   elem.addEventListener("click", (e) => {
@@ -73,6 +68,8 @@ const newProjectAddButton = document.getElementById("project-add-button-popup");
 const newProjectCancelButton = document.getElementById(
   "project-cancel-button-popup"
 );
+const newProjectFormDiv = document.getElementById("new-project-form");
+const newProjectButton = document.getElementById("new-project-div");
 const newProjectInput = document.querySelector("[data-new-project-input]");
 const LOCAL_STORAGE_PROJECT_KEY = "projects.project";
 const LOCAL_STORAGE_SELECTED_PROJECT_ID_KEY = "projects.selectedProjectId";
@@ -82,8 +79,33 @@ let selectedProjectId = localStorage.getItem(
   LOCAL_STORAGE_SELECTED_PROJECT_ID_KEY
 );
 
-projectsElem.addEventListener("click", (e) => {
+newProjectButton.addEventListener("click", (e) => {
+  const newProjectFormCurrentDisplay =
+    window.getComputedStyle(newProjectFormDiv).display;
+  newProjectFormDiv.style.display =
+    newProjectFormCurrentDisplay === "none" ? "flex" : "none";
 
+  const newProjectButtonCurrentDisplay =
+    window.getComputedStyle(newProjectButton).display;
+  newProjectButton.style.display =
+    newProjectButtonCurrentDisplay === "none" ? "flex" : "none";
+});
+
+newProjectCancelButton.addEventListener("click", (e) => {
+  e.preventDefault();
+  newProjectInput.value = null;
+  const newProjectFormCurrentDisplay =
+    window.getComputedStyle(newProjectFormDiv).display;
+  newProjectFormDiv.style.display =
+    newProjectFormCurrentDisplay === "none" ? "flex" : "none";
+
+  const newProjectButtonCurrentDisplay =
+    window.getComputedStyle(newProjectButton).display;
+  newProjectButton.style.display =
+    newProjectButtonCurrentDisplay === "none" ? "flex" : "none";
+});
+
+projectsElem.addEventListener("click", (e) => {
   if (e.target.closest(".project")) {
     selectedProjectId = e.target.closest(".project").dataset.projectId;
     saveAndRender();
@@ -98,7 +120,6 @@ projectsElem.addEventListener("click", (e) => {
     selectedProjectId = null;
     saveAndRender();
   }
-
 });
 
 newProjectAddButton.addEventListener("click", (e) => {
