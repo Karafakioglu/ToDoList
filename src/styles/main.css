@@ -111,6 +111,11 @@ button {
   flex: 9;
 }
 
+.selected-project {
+  background-color: rgb(109, 109, 109);
+  border-radius: 0.5rem;
+}
+
 .projects div button {
   display: flex;
   font-size: 1.25rem;

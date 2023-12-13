@@ -74,7 +74,7 @@ const newProjectCancelButton = document.getElementById(
   "project-cancel-button-popup"
 );
 const newProjectInput = document.querySelector("[data-new-project-input]");
-const LOCAL_STORAGE_PROJECT_KEY = "project";
+const LOCAL_STORAGE_PROJECT_KEY = "projects.project";
 const projects =
   JSON.parse(localStorage.getItem(LOCAL_STORAGE_PROJECT_KEY)) || [];
 
