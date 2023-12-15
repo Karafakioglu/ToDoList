@@ -199,7 +199,12 @@ function renderProjects() {
 function renderProjectTitle() {
   const projectTitleElem = document.querySelector("[data-project-title]");
   const project = projects.find((project) => project.id === selectedProjectId);
-  projectTitleElem.innerText = project.name;
+
+  if (project) {
+    projectTitleElem.innerText = project.name;
+  } else {
+    projectTitleElem.innerText = ""; // or some default text
+  }
 }
 
 //clearing all projects
