@@ -59,35 +59,46 @@
       </div>
       <div class="main">
         <h1 data-project-title>Project Name</h1>
-        <div class="task">
-          <button class="task-done-button left">
-            <img class="done-logo" />
-            <span class="task-name">Task</span>
-          </button>
-          <button class="delete-task right">
-            <img class="delete-task-logo" />
-          </button>
-        </div>
-        <div class="task">
-          <button class="task-done-button left">
-            <img class="done-logo" />
-            <span class="task-name">Task</span>
-          </button>
-          <button class="delete-task right">
-            <img class="delete-task-logo" />
-          </button>
-        </div>
-        <div class="new-task">
-          <button class="">
-            <img class="new-project-logo" />
-            <span>Add new task</span>
-          </button>
-        </div>
-        <div class="new-task-form">
-          <input type="text" id="input-add-task-popup" />
-          <div id="new-task-buttons-popup">
-            <button id="task-add-button-popup">Add</button>
-            <button id="task-cancel-button-popup">Cancel</button>
+        <div class="tasks-section">
+          <div class="tasks" data-tasks>
+            <div class="task selected-task">
+              <button class="task-done-button left">
+                <img class="done-logo" />
+                <span class="task-name">Task</span>
+              </button>
+              <button class="delete-task right">
+                <img class="delete-task-logo" />
+              </button>
+            </div>
+            <div class="task">
+              <button class="task-done-button left">
+                <img class="done-logo" />
+                <span class="task-name">Task</span>
+              </button>
+              <button class="delete-task right">
+                <img class="delete-task-logo" />
+              </button>
+            </div>
+          </div>
+
+          <div class="new-task-section">
+            <div id="new-task-div">
+              <button class="new-task-button">
+                <img class="new-project-logo" />
+                <span>Add New Task</span>
+              </button>
+            </div>
+            <form action="" id="new-task-form">
+              <input
+                type="text"
+                id="input-add-task-popup"
+                data-new-task-input
+              />
+              <div id="new-task-buttons-popup">
+                <button id="task-add-button-popup">Add</button>
+                <button id="task-cancel-button-popup">Cancel</button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
