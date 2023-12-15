@@ -155,6 +155,11 @@ function save() {
 
 function render() {
   clearElement(projectsElem);
+  renderProjects();
+  renderProjectTitle();
+}
+
+function renderProjects() {
   projects.forEach((project) => {
     const projectDiv = document.createElement("div");
     const projectBtnLeft = document.createElement("button");
@@ -189,6 +194,12 @@ function render() {
     projectLogoImg.src = projectLogo;
     deleteLogoImg.src = deleteProjectLogo;
   });
+}
+
+function renderProjectTitle() {
+  const projectTitleElem = document.querySelector("[data-project-title]");
+  const project = projects.find((project) => project.id === selectedProjectId);
+  projectTitleElem.innerText = project.name;
 }
 
 //clearing all projects
