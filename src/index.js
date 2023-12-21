@@ -88,6 +88,7 @@ const newTaskButton = document.getElementById("new-task-div");
 const newTaskFormDiv = document.getElementById("new-task-form");
 const newTaskCancelButton = document.getElementById("task-cancel-button-popup");
 const newTaskInput = document.querySelector("[data-new-task-input]");
+const newTaskAddButton = document.getElementById("task-add-button-popup");
 
 newTaskButton.addEventListener("click", (e) => {
   const newTaskFormCurrentDisplay =
@@ -100,8 +101,6 @@ newTaskButton.addEventListener("click", (e) => {
   newTaskButton.style.display =
     newTaskButtonCurrentDisplay === "none" ? "flex" : "none";
 });
-
-
 
 newProjectButton.addEventListener("click", (e) => {
   const newProjectFormCurrentDisplay =
@@ -174,17 +173,37 @@ newProjectAddButton.addEventListener("click", (e) => {
   }
 });
 
+newTaskAddButton.addEventListener("click", (e) => {
+  e.preventDefault();
+  let taskName = newTaskInput.value;
+  console.log(taskName);
+  if (taskName == null || taskName === "") {
+    alert("Please enter a task name to add!");
+    return;
+  } else {
+    const selectedProject = projects.find(
+      (project) => project.id === selectedProjectId
+    );
+    const task = createTask(taskName);
+    newTaskInput.value = null;
+    selectedProject.tasks.push(task);
+    saveAndRender();
+  }
+});
+
+function createTask(name) {
+  return {
+    id: Date.now().toString(),
+    name: name,
+    complete: false,
+  };
+}
+
 function createProject(name) {
   return {
     id: Date.now().toString(),
     name: name,
-    tasks: [
-      {
-        id: Date.now().toString(),
-        name: "Task 1",
-        complete: true,
-      },
-    ],
+    tasks: [],
   };
 }
 
@@ -207,26 +226,7 @@ function render() {
   renderProjectTitle();
   clearElement(tasks);
   renderTasks();
-
-  // const selectedProject = projects.find(
-  //   (project) => project.id === selectedProjectId
-  // );
-
-  // renderTasks(selectedProject);
 }
-
-// function renderTasks(selectedProject) {
-//   selectedProject.tasks.forEach((task) => {
-//     const taskElem = document.importNode(taskTemplate.content, true);
-//     const checkbox = taskElem.querySelector("input");
-//     checkbox.id = task.id;
-//     checkbox.checked = task.complete;
-//     const label = taskElem.querySelector("label");
-//     label.htmlFor = task.id;
-//     label.append(task.name);
-//     tasks.appendChild(taskElem);
-//   });
-// }
 
 function renderTasks() {
   const selectedProject = projects.find(
