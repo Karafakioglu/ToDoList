@@ -47,7 +47,9 @@ deleteLogoElems.forEach((elem) => {
   });
 });
 
-const taskDoneButtonElems = document.querySelectorAll(".task-done-button");
+const taskDoneButtonElems = document.querySelectorAll(
+  ".task-done-button input[type='checkbox']"
+);
 taskDoneButtonElems.forEach((elem) => {
   elem.addEventListener("click", (e) => {
     alert("you clicked on done task btn");
@@ -71,13 +73,35 @@ const newProjectCancelButton = document.getElementById(
 const newProjectFormDiv = document.getElementById("new-project-form");
 const newProjectButton = document.getElementById("new-project-div");
 const newProjectInput = document.querySelector("[data-new-project-input]");
+const projectTitleElem = document.querySelector("[data-project-title]");
+const tasks = document.querySelector("[data-tasks]");
 const LOCAL_STORAGE_PROJECT_KEY = "projects.project";
 const LOCAL_STORAGE_SELECTED_PROJECT_ID_KEY = "projects.selectedProjectId";
+const taskTemplate = document.getElementById("task-template");
 let projects =
   JSON.parse(localStorage.getItem(LOCAL_STORAGE_PROJECT_KEY)) || [];
 let selectedProjectId = localStorage.getItem(
   LOCAL_STORAGE_SELECTED_PROJECT_ID_KEY
 );
+
+const newTaskButton = document.getElementById("new-task-div");
+const newTaskFormDiv = document.getElementById("new-task-form");
+const newTaskCancelButton = document.getElementById("task-cancel-button-popup");
+const newTaskInput = document.querySelector("[data-new-task-input]");
+
+newTaskButton.addEventListener("click", (e) => {
+  const newTaskFormCurrentDisplay =
+    window.getComputedStyle(newTaskFormDiv).display;
+  newTaskFormDiv.style.display =
+    newTaskFormCurrentDisplay === "none" ? "flex" : "none";
+
+  const newTaskButtonCurrentDisplay =
+    window.getComputedStyle(newTaskButton).display;
+  newTaskButton.style.display =
+    newTaskButtonCurrentDisplay === "none" ? "flex" : "none";
+});
+
+
 
 newProjectButton.addEventListener("click", (e) => {
   const newProjectFormCurrentDisplay =
@@ -89,6 +113,20 @@ newProjectButton.addEventListener("click", (e) => {
     window.getComputedStyle(newProjectButton).display;
   newProjectButton.style.display =
     newProjectButtonCurrentDisplay === "none" ? "flex" : "none";
+});
+
+newTaskCancelButton.addEventListener("click", (e) => {
+  e.preventDefault();
+  newTaskInput.value = null;
+  const newTaskFormCurrentDisplay =
+    window.getComputedStyle(newTaskFormDiv).display;
+  newTaskFormDiv.style.display =
+    newTaskFormCurrentDisplay === "none" ? "flex" : "none";
+
+  const newTaskButtonCurrentDisplay =
+    window.getComputedStyle(newTaskButton).display;
+  newTaskButton.style.display =
+    newTaskButtonCurrentDisplay === "none" ? "flex" : "none";
 });
 
 newProjectCancelButton.addEventListener("click", (e) => {
@@ -137,7 +175,17 @@ newProjectAddButton.addEventListener("click", (e) => {
 });
 
 function createProject(name) {
-  return { id: Date.now().toString(), name: name, tasks: [] };
+  return {
+    id: Date.now().toString(),
+    name: name,
+    tasks: [
+      {
+        id: Date.now().toString(),
+        name: "Task 1",
+        complete: true,
+      },
+    ],
+  };
 }
 
 function saveAndRender() {
@@ -157,6 +205,45 @@ function render() {
   clearElement(projectsElem);
   renderProjects();
   renderProjectTitle();
+  clearElement(tasks);
+  renderTasks();
+
+  // const selectedProject = projects.find(
+  //   (project) => project.id === selectedProjectId
+  // );
+
+  // renderTasks(selectedProject);
+}
+
+// function renderTasks(selectedProject) {
+//   selectedProject.tasks.forEach((task) => {
+//     const taskElem = document.importNode(taskTemplate.content, true);
+//     const checkbox = taskElem.querySelector("input");
+//     checkbox.id = task.id;
+//     checkbox.checked = task.complete;
+//     const label = taskElem.querySelector("label");
+//     label.htmlFor = task.id;
+//     label.append(task.name);
+//     tasks.appendChild(taskElem);
+//   });
+// }
+
+function renderTasks() {
+  const selectedProject = projects.find(
+    (project) => project.id === selectedProjectId
+  );
+  if (selectedProject) {
+    selectedProject.tasks.forEach((task) => {
+      const taskElem = document.importNode(taskTemplate.content, true);
+      const checkbox = taskElem.querySelector("input");
+      checkbox.id = task.id;
+      checkbox.checked = task.complete;
+      const label = taskElem.querySelector("label");
+      label.htmlFor = task.id;
+      label.append(task.name);
+      tasks.appendChild(taskElem);
+    });
+  }
 }
 
 function renderProjects() {
@@ -197,7 +284,6 @@ function renderProjects() {
 }
 
 function renderProjectTitle() {
-  const projectTitleElem = document.querySelector("[data-project-title]");
   const project = projects.find((project) => project.id === selectedProjectId);
 
   if (project) {

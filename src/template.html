@@ -61,20 +61,22 @@
         <h1 data-project-title>Project Name</h1>
         <div class="tasks-section">
           <div class="tasks" data-tasks>
-            <div class="task selected-task">
-              <button class="task-done-button left">
+            <div class="task">
+              <label class="task-done-button left">
+                <input type="checkbox" />
                 <img class="done-logo" />
                 <span class="task-name">Task</span>
-              </button>
+              </label>
               <button class="delete-task right">
                 <img class="delete-task-logo" />
               </button>
             </div>
             <div class="task">
-              <button class="task-done-button left">
+              <label class="task-done-button left">
+                <input type="checkbox" />
                 <img class="done-logo" />
                 <span class="task-name">Task</span>
-              </button>
+              </label>
               <button class="delete-task right">
                 <img class="delete-task-logo" />
               </button>
@@ -103,5 +105,17 @@
         </div>
       </div>
     </div>
+    <template id="task-template">
+      <div class="task">
+        <label class="task-done-button left">
+          <input type="checkbox" />
+          <img class="done-logo" />
+          <span class="task-name"></span>
+        </label>
+        <button class="delete-task right">
+          <img class="delete-task-logo" />
+        </button>
+      </div>
+    </template>
   </body>
 </html>
