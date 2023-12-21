@@ -34,35 +34,6 @@ deleteTaskLogoElems.forEach((elem) => {
   elem.src = deleteProjectLogo;
 });
 
-const projectElems = document.querySelectorAll(".project-button");
-projectElems.forEach((elem) => {
-  elem.addEventListener("click", (e) => {
-    alert("You clicked on the project");
-  });
-});
-
-deleteLogoElems.forEach((elem) => {
-  elem.addEventListener("click", (e) => {
-    alert("you clicked on project delete button");
-  });
-});
-
-const taskDoneButtonElems = document.querySelectorAll(
-  ".task-done-button input[type='checkbox']"
-);
-taskDoneButtonElems.forEach((elem) => {
-  elem.addEventListener("click", (e) => {
-    alert("you clicked on done task btn");
-  });
-});
-
-const deleteTaskButtonElems = document.querySelectorAll(".delete-task-logo");
-deleteTaskButtonElems.forEach((elem) => {
-  elem.addEventListener("click", (e) => {
-    alert("you clicked on task delete button");
-  });
-});
-
 //Project rendering
 
 const projectsElem = document.querySelector("[data-projects]");
@@ -143,16 +114,29 @@ newProjectCancelButton.addEventListener("click", (e) => {
 });
 
 projectsElem.addEventListener("click", (e) => {
+  console.log(e.target);
   if (e.target.closest(".project")) {
     selectedProjectId = e.target.closest(".project").dataset.projectId;
     saveAndRender();
   }
 });
 
+tasks.addEventListener("click", (e) => {
+  if (e.target.tagName.toLowerCase() === "input") {
+    const selectedProject = projects.find(
+      (project) => project.id === selectedProjectId
+    );
+    const selectedTask = selectedProject.tasks.find(
+      (task) => task.id === e.target.id
+    );
+    selectedTask.complete = e.target.checked;
+    save();
+  }
+});
+
 projectsElem.addEventListener("click", (e) => {
   if (e.target.closest(".delete-project")) {
     console.log(e.target.closest(".project").dataset.projectId);
-    let projectId = e.target.closest(".project").dataset.projectId;
     projects = projects.filter((project) => project.id !== selectedProjectId);
     selectedProjectId = null;
     saveAndRender();
@@ -176,19 +160,17 @@ newProjectAddButton.addEventListener("click", (e) => {
 newTaskAddButton.addEventListener("click", (e) => {
   e.preventDefault();
   let taskName = newTaskInput.value;
-  console.log(taskName);
-  if (taskName == null || taskName === "") {
-    alert("Please enter a task name to add!");
-    return;
-  } else {
-    const selectedProject = projects.find(
-      (project) => project.id === selectedProjectId
-    );
-    const task = createTask(taskName);
-    newTaskInput.value = null;
-    selectedProject.tasks.push(task);
-    saveAndRender();
-  }
+  if (taskName == null || taskName === "") return;
+
+  const task = createTask(taskName);
+  newTaskInput.value = null;
+
+  const selectedProject = projects.find(
+    (project) => project.id === selectedProjectId
+  );
+
+  selectedProject.tasks.push(task);
+  saveAndRender();
 });
 
 function createTask(name) {
