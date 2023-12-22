@@ -5,6 +5,7 @@ import projectLogo from "./assets/project-logo.svg";
 import addNewProjectLogo from "./assets/new-project-logo.svg";
 import deleteProjectLogo from "./assets/delete-logo.svg";
 import doneLogo from "./assets/done-logo.svg";
+import * as StorageManager from "./storageManager.js";
 
 const logoImg = document.getElementById("logo");
 logoImg.src = logo;
@@ -46,14 +47,10 @@ const newProjectButton = document.getElementById("new-project-div");
 const newProjectInput = document.querySelector("[data-new-project-input]");
 const projectTitleElem = document.querySelector("[data-project-title]");
 const tasks = document.querySelector("[data-tasks]");
-const LOCAL_STORAGE_PROJECT_KEY = "projects.project";
-const LOCAL_STORAGE_SELECTED_PROJECT_ID_KEY = "projects.selectedProjectId";
+
 const taskTemplate = document.getElementById("task-template");
-let projects =
-  JSON.parse(localStorage.getItem(LOCAL_STORAGE_PROJECT_KEY)) || [];
-let selectedProjectId = localStorage.getItem(
-  LOCAL_STORAGE_SELECTED_PROJECT_ID_KEY
-);
+let projects = StorageManager.loadProjects();
+let selectedProjectId = StorageManager.loadSelectedProjectId();
 
 const newTaskButton = document.getElementById("new-task-div");
 const newTaskFormDiv = document.getElementById("new-task-form");
@@ -195,11 +192,8 @@ function saveAndRender() {
 }
 
 function save() {
-  localStorage.setItem(LOCAL_STORAGE_PROJECT_KEY, JSON.stringify(projects));
-  localStorage.setItem(
-    LOCAL_STORAGE_SELECTED_PROJECT_ID_KEY,
-    selectedProjectId
-  );
+  StorageManager.saveProjects(projects);
+  StorageManager.saveSelectedProjectId(selectedProjectId);
 }
 
 function render() {
