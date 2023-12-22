@@ -37,3 +37,9 @@ function resetAndToggleForm(e, input, form, button) {
   input.value = null;
   toggleFormDisplay(button, form);
 }
+
+export function clearElement(element) {
+  while (element.firstChild) {
+    element.removeChild(element.firstChild);
+  }
+}

@@ -92,7 +92,7 @@ function save() {
 }
 
 function render() {
-  clearElement(projectsElem);
+  UiManager.clearElement(projectsElem);
   ProjectManager.renderProjects(
     projects,
     selectedProjectId,
@@ -105,7 +105,7 @@ function render() {
     selectedProjectId,
     projectTitleElem
   );
-  clearElement(tasks);
+  UiManager.clearElement(tasks);
   TaskManager.renderTasks(
     projects,
     selectedProjectId,
@@ -114,14 +114,6 @@ function render() {
     deleteProjectLogo,
     saveAndRender
   );
-}
-
-//clearing all projects
-
-function clearElement(element) {
-  while (element.firstChild) {
-    element.removeChild(element.firstChild);
-  }
 }
 
 render();
