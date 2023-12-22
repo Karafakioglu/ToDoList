@@ -1,85 +1,25 @@
 import "./styles/main.css";
-
 import * as StorageManager from "./storageManager.js";
 import * as ProjectManager from "./projectManager.js";
 import * as TaskManager from "./taskManager.js";
 import * as ImageManager from "./imageManager.js";
 import { projectLogo, deleteProjectLogo } from "./imageManager.js";
+import * as UiManager from "./uiManager.js";
 
+UiManager.initializeToggles();
 ImageManager.initializeImages();
 
-const projectsElem = document.querySelector("[data-projects]");
-const newProjectAddButton = document.getElementById("project-add-button-popup");
-const newProjectCancelButton = document.getElementById(
-  "project-cancel-button-popup"
-);
-const newProjectFormDiv = document.getElementById("new-project-form");
-const newProjectButton = document.getElementById("new-project-div");
-const newProjectInput = document.querySelector("[data-new-project-input]");
-const projectTitleElem = document.querySelector("[data-project-title]");
-const tasks = document.querySelector("[data-tasks]");
-
-const taskTemplate = document.getElementById("task-template");
 let projects = StorageManager.loadProjects();
 let selectedProjectId = StorageManager.loadSelectedProjectId();
 
-const newTaskButton = document.getElementById("new-task-div");
-const newTaskFormDiv = document.getElementById("new-task-form");
-const newTaskCancelButton = document.getElementById("task-cancel-button-popup");
+const projectsElem = document.querySelector("[data-projects]");
+const newProjectAddButton = document.getElementById("project-add-button-popup");
+const newProjectInput = document.querySelector("[data-new-project-input]");
+const projectTitleElem = document.querySelector("[data-project-title]");
+const tasks = document.querySelector("[data-tasks]");
+const taskTemplate = document.getElementById("task-template");
 const newTaskInput = document.querySelector("[data-new-task-input]");
 const newTaskAddButton = document.getElementById("task-add-button-popup");
-
-newTaskButton.addEventListener("click", (e) => {
-  const newTaskFormCurrentDisplay =
-    window.getComputedStyle(newTaskFormDiv).display;
-  newTaskFormDiv.style.display =
-    newTaskFormCurrentDisplay === "none" ? "flex" : "none";
-
-  const newTaskButtonCurrentDisplay =
-    window.getComputedStyle(newTaskButton).display;
-  newTaskButton.style.display =
-    newTaskButtonCurrentDisplay === "none" ? "flex" : "none";
-});
-
-newProjectButton.addEventListener("click", (e) => {
-  const newProjectFormCurrentDisplay =
-    window.getComputedStyle(newProjectFormDiv).display;
-  newProjectFormDiv.style.display =
-    newProjectFormCurrentDisplay === "none" ? "flex" : "none";
-
-  const newProjectButtonCurrentDisplay =
-    window.getComputedStyle(newProjectButton).display;
-  newProjectButton.style.display =
-    newProjectButtonCurrentDisplay === "none" ? "flex" : "none";
-});
-
-newTaskCancelButton.addEventListener("click", (e) => {
-  e.preventDefault();
-  newTaskInput.value = null;
-  const newTaskFormCurrentDisplay =
-    window.getComputedStyle(newTaskFormDiv).display;
-  newTaskFormDiv.style.display =
-    newTaskFormCurrentDisplay === "none" ? "flex" : "none";
-
-  const newTaskButtonCurrentDisplay =
-    window.getComputedStyle(newTaskButton).display;
-  newTaskButton.style.display =
-    newTaskButtonCurrentDisplay === "none" ? "flex" : "none";
-});
-
-newProjectCancelButton.addEventListener("click", (e) => {
-  e.preventDefault();
-  newProjectInput.value = null;
-  const newProjectFormCurrentDisplay =
-    window.getComputedStyle(newProjectFormDiv).display;
-  newProjectFormDiv.style.display =
-    newProjectFormCurrentDisplay === "none" ? "flex" : "none";
-
-  const newProjectButtonCurrentDisplay =
-    window.getComputedStyle(newProjectButton).display;
-  newProjectButton.style.display =
-    newProjectButtonCurrentDisplay === "none" ? "flex" : "none";
-});
 
 projectsElem.addEventListener("click", (e) => {
   console.log(e.target);
