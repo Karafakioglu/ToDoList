@@ -1,42 +1,12 @@
 import "./styles/main.css";
-import logo from "./assets/logo.svg";
-import projectLogo from "./assets/project-logo.svg";
-import addNewProjectLogo from "./assets/new-project-logo.svg";
-import deleteProjectLogo from "./assets/delete-logo.svg";
-import doneLogo from "./assets/done-logo.svg";
+
 import * as StorageManager from "./storageManager.js";
 import * as ProjectManager from "./projectManager.js";
 import * as TaskManager from "./taskManager.js";
+import * as ImageManager from "./imageManager.js";
+import { projectLogo, deleteProjectLogo } from "./imageManager.js";
 
-const logoImg = document.getElementById("logo");
-logoImg.src = logo;
-
-const projectLogoImgs = document.querySelectorAll(".project-logo");
-projectLogoImgs.forEach((img) => {
-  img.src = projectLogo;
-});
-
-const addNewProject = document.querySelectorAll(".new-project-logo");
-addNewProject.forEach((img) => {
-  img.src = addNewProjectLogo;
-});
-
-const deleteLogoElems = document.querySelectorAll(".delete-logo");
-deleteLogoElems.forEach((elem) => {
-  elem.src = deleteProjectLogo;
-});
-
-const doneLogoElems = document.querySelectorAll(".done-logo");
-doneLogoElems.forEach((elem) => {
-  elem.src = doneLogo;
-});
-
-const deleteTaskLogoElems = document.querySelectorAll(".delete-task-logo");
-deleteTaskLogoElems.forEach((elem) => {
-  elem.src = deleteProjectLogo;
-});
-
-//Project rendering
+ImageManager.initializeImages();
 
 const projectsElem = document.querySelector("[data-projects]");
 const newProjectAddButton = document.getElementById("project-add-button-popup");
