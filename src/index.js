@@ -1,4 +1,3 @@
-import helloWorld from "./main";
 import "./styles/main.css";
 import logo from "./assets/logo.svg";
 import projectLogo from "./assets/project-logo.svg";
