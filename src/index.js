@@ -6,6 +6,7 @@ import deleteProjectLogo from "./assets/delete-logo.svg";
 import doneLogo from "./assets/done-logo.svg";
 import * as StorageManager from "./storageManager.js";
 import * as ProjectManager from "./projectManager.js";
+import * as TaskManager from "./taskManager.js";
 
 const logoImg = document.getElementById("logo");
 logoImg.src = logo;
@@ -159,7 +160,7 @@ newTaskAddButton.addEventListener("click", (e) => {
   let taskName = newTaskInput.value;
   if (taskName == null || taskName === "") return;
 
-  const task = createTask(taskName);
+  const task = TaskManager.createTask(taskName);
   newTaskInput.value = null;
 
   const selectedProject = projects.find(
@@ -169,14 +170,6 @@ newTaskAddButton.addEventListener("click", (e) => {
   selectedProject.tasks.push(task);
   saveAndRender();
 });
-
-function createTask(name) {
-  return {
-    id: Date.now().toString(),
-    name: name,
-    complete: false,
-  };
-}
 
 function saveAndRender() {
   save();
@@ -203,51 +196,15 @@ function render() {
     projectTitleElem
   );
   clearElement(tasks);
-  renderTasks();
-}
-
-function renderTasks() {
-  const selectedProject = projects.find(
-    (project) => project.id === selectedProjectId
+  TaskManager.renderTasks(
+    projects,
+    selectedProjectId,
+    tasks,
+    taskTemplate,
+    deleteProjectLogo,
+    saveAndRender
   );
-  if (selectedProject) {
-    selectedProject.tasks.forEach((task) => {
-      const taskElem = document.importNode(taskTemplate.content, true);
-      const checkbox = taskElem.querySelector("input");
-      const deleteTaskLogo = taskElem.querySelector(".delete-task-logo");
-      const deleteTaskBtn = taskElem.querySelector(".delete-task");
-      deleteTaskLogo.src = deleteProjectLogo;
-
-      deleteTaskBtn.addEventListener("click", (e) => {
-        const selectedProject = projects.find(
-          (project) => project.id === selectedProjectId
-        );
-        let selectedTaskId = e.target
-          .closest(".task")
-          .querySelector("input").id;
-        console.log(selectedTaskId);
-
-        selectedProject.tasks = selectedProject.tasks.filter(
-          (task) => task.id !== selectedTaskId
-        );
-        saveAndRender();
-      });
-
-      checkbox.id = task.id;
-      checkbox.checked = task.complete;
-      const label = taskElem.querySelector("label");
-      label.htmlFor = task.id;
-      label.append(task.name);
-      tasks.appendChild(taskElem);
-    });
-  }
 }
-
-ProjectManager.renderProjectTitle(
-  projects,
-  selectedProjectId,
-  projectTitleElem
-);
 
 //clearing all projects
 
