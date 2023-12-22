@@ -5,6 +5,7 @@ import addNewProjectLogo from "./assets/new-project-logo.svg";
 import deleteProjectLogo from "./assets/delete-logo.svg";
 import doneLogo from "./assets/done-logo.svg";
 import * as StorageManager from "./storageManager.js";
+import * as ProjectManager from "./projectManager.js";
 
 const logoImg = document.getElementById("logo");
 logoImg.src = logo;
@@ -146,7 +147,7 @@ newProjectAddButton.addEventListener("click", (e) => {
     alert("Please enter a project name to add!");
     return;
   } else {
-    const project = createProject(projectName);
+    const project = ProjectManager.createProject(projectName);
     newProjectInput.value = null;
     projects.push(project);
     saveAndRender();
@@ -177,14 +178,6 @@ function createTask(name) {
   };
 }
 
-function createProject(name) {
-  return {
-    id: Date.now().toString(),
-    name: name,
-    tasks: [],
-  };
-}
-
 function saveAndRender() {
   save();
   render();
@@ -197,8 +190,18 @@ function save() {
 
 function render() {
   clearElement(projectsElem);
-  renderProjects();
-  renderProjectTitle();
+  ProjectManager.renderProjects(
+    projects,
+    selectedProjectId,
+    projectsElem,
+    projectLogo,
+    deleteProjectLogo
+  );
+  ProjectManager.renderProjectTitle(
+    projects,
+    selectedProjectId,
+    projectTitleElem
+  );
   clearElement(tasks);
   renderTasks();
 }
@@ -240,52 +243,11 @@ function renderTasks() {
   }
 }
 
-function renderProjects() {
-  projects.forEach((project) => {
-    const projectDiv = document.createElement("div");
-    const projectBtnLeft = document.createElement("button");
-    const projectLogoImg = document.createElement("img");
-    const projectSpan = document.createElement("span");
-    const projectBtnRight = document.createElement("button");
-    const deleteLogoImg = document.createElement("img");
-
-    projectDiv.classList.add("project");
-    projectDiv.dataset.projectId = project.id;
-    if (project.id === selectedProjectId) {
-      projectDiv.classList.add("selected-project");
-    }
-
-    projectBtnLeft.classList.add("project-button");
-    projectBtnLeft.classList.add("left");
-    projectLogoImg.classList.add("project-logo");
-    projectSpan.classList.add("project-name");
-    projectBtnRight.classList.add("delete-project");
-    projectBtnRight.classList.add("right");
-    deleteLogoImg.classList.add("delete-logo");
-
-    projectSpan.innerText = project.name;
-
-    projectsElem.appendChild(projectDiv);
-    projectDiv.appendChild(projectBtnLeft);
-    projectDiv.appendChild(projectBtnRight);
-    projectBtnLeft.appendChild(projectLogoImg);
-    projectBtnLeft.appendChild(projectSpan);
-    projectBtnRight.appendChild(deleteLogoImg);
-
-    projectLogoImg.src = projectLogo;
-    deleteLogoImg.src = deleteProjectLogo;
-  });
-}
-
-function renderProjectTitle() {
-  const project = projects.find((project) => project.id === selectedProjectId);
-
-  if (project) {
-    projectTitleElem.innerText = project.name;
-  } else {
-    projectTitleElem.innerText = "";
-  }
-}
+ProjectManager.renderProjectTitle(
+  projects,
+  selectedProjectId,
+  projectTitleElem
+);
 
 //clearing all projects
 
