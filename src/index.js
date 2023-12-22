@@ -218,6 +218,25 @@ function renderTasks() {
     selectedProject.tasks.forEach((task) => {
       const taskElem = document.importNode(taskTemplate.content, true);
       const checkbox = taskElem.querySelector("input");
+      const deleteTaskLogo = taskElem.querySelector(".delete-task-logo");
+      const deleteTaskBtn = taskElem.querySelector(".delete-task");
+      deleteTaskLogo.src = deleteProjectLogo;
+
+      deleteTaskBtn.addEventListener("click", (e) => {
+        const selectedProject = projects.find(
+          (project) => project.id === selectedProjectId
+        );
+        let selectedTaskId = e.target
+          .closest(".task")
+          .querySelector("input").id;
+        console.log(selectedTaskId);
+
+        selectedProject.tasks = selectedProject.tasks.filter(
+          (task) => task.id !== selectedTaskId
+        );
+        saveAndRender();
+      });
+
       checkbox.id = task.id;
       checkbox.checked = task.complete;
       const label = taskElem.querySelector("label");
@@ -271,7 +290,7 @@ function renderProjectTitle() {
   if (project) {
     projectTitleElem.innerText = project.name;
   } else {
-    projectTitleElem.innerText = ""; // or some default text
+    projectTitleElem.innerText = "";
   }
 }
 
