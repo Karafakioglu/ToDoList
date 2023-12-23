@@ -2,7 +2,7 @@
   "name": "todolist",
   "version": "1.0.0",
   "description": "",
-  "homepage": "https://karafakioglu.github.io/To-Do-Application/",
+  "homepage": "https://karafakioglu.github.io/ToDoList/",
   "main": "index.js",
   "scripts": {
     "build": "webpack",

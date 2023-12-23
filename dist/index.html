@@ -1,28 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>To Do List</title>
-<script defer src="bundlecb2549accb20e2c72cae.js"></script></head>
-<body>
+  <script defer src="bundle7a982a128b7dfa86736a.js"></script></head>
+
+  <body>
     <div class="wrapper">
-        <div class="header">
-                <img alt="image of logo" id="logo">
-                <h1 id="application-text">To Do Application</h1>
-        </div>
-        <div class="sidebar">
-            <div class="projects">
-                <h1>Projects</h1>
-                <div class="project">
-                    <img id="project-icon">
-                    <span class="project-name">Project 1</span>
-                </div>
+      <div class="header">
+        <img alt="image of logo" id="logo" />
+        <h1 id="application-text">To Do Application</h1>
+      </div>
+      <div class="sidebar">
+        <div class="projects-section">
+          <h1>Projects</h1>
+          <div class="projects" data-projects>
+            <div class="project selected-project">
+              <button class="project-button left">
+                <img class="project-logo" />
+                <span class="project-name">Project 3</span>
+              </button>
+              <button class="delete-project right">
+                <img class="delete-logo" />
+              </button>
             </div>
+            <div class="project">
+              <button class="project-button left">
+                <img class="project-logo" />
+                <span class="project-name">Project 4</span>
+              </button>
+              <button class="delete-project right">
+                <img class="delete-logo" />
+              </button>
+            </div>
+          </div>
+
+          <div class="new-project-section">
+            <div id="new-project-div">
+              <button class="new-project-button">
+                <img class="new-project-logo" />
+                <span>Add New Project</span>
+              </button>
+            </div>
+            <form action="" id="new-project-form">
+              <input
+                type="text"
+                id="input-add-project-popup"
+                data-new-project-input
+              />
+              <div id="new-project-buttons-popup">
+                <button id="project-add-button-popup">Add</button>
+                <button id="project-cancel-button-popup">Cancel</button>
+              </div>
+            </form>
+          </div>
         </div>
-        <div class="main">
-            Test
+      </div>
+      <div class="main">
+        <h1 data-project-title>Project Name</h1>
+        <div class="tasks-section">
+          <div class="tasks" data-tasks>
+            <div class="task">
+              <label class="task-done-button left">
+                <input type="checkbox" />
+                <img class="done-logo" />
+                <span class="task-name">Task</span>
+              </label>
+              <button class="delete-task right">
+                <img class="delete-task-logo" />
+              </button>
+            </div>
+            <div class="task">
+              <label class="task-done-button left">
+                <input type="checkbox" />
+                <img class="done-logo" />
+                <span class="task-name">Task</span>
+              </label>
+              <button class="delete-task right">
+                <img class="delete-task-logo" />
+              </button>
+            </div>
+          </div>
+
+          <div class="new-task-section">
+            <div id="new-task-div">
+              <button class="new-task-button">
+                <img class="new-project-logo" />
+                <span>Add New Task</span>
+              </button>
+            </div>
+            <form action="" id="new-task-form">
+              <input
+                type="text"
+                id="input-add-task-popup"
+                data-new-task-input
+              />
+              <div id="new-task-buttons-popup">
+                <button id="task-add-button-popup">Add</button>
+                <button id="task-cancel-button-popup">Cancel</button>
+              </div>
+            </form>
+          </div>
         </div>
+      </div>
     </div>
-</body>
+    <template id="task-template">
+      <div class="task">
+        <label class="task-done-button left">
+          <input type="checkbox" />
+          <img class="done-logo" />
+          <span class="task-name"></span>
+        </label>
+        <button class="delete-task right">
+          <img class="delete-task-logo" />
+        </button>
+      </div>
+    </template>
+  </body>
 </html>
