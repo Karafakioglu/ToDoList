@@ -13,6 +13,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   createNewProject: () => (/* binding */ createNewProject),
 /* harmony export */   createNewTask: () => (/* binding */ createNewTask)
 /* harmony export */ });
+var newTaskAddButton = document.getElementById("task-add-button-popup");
+var newTaskInput = document.querySelector("[data-new-task-input]");
+var newProjectInput = document.querySelector("[data-new-project-input]");
+var newProjectAddButton = document.getElementById("project-add-button-popup");
 function createNewProject(e, createItem, projects, saveAndRender) {
   e.preventDefault();
   var projectName = newProjectInput.value;
@@ -1301,4 +1305,4 @@ render();
 
 /******/ })()
 ;
-//# sourceMappingURL=bundle7a982a128b7dfa86736a.js.map
+//# sourceMappingURL=bundlecc9d9c61ee515c1b08c3.js.map
