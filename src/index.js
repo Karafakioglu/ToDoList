@@ -5,6 +5,7 @@ import * as TaskManager from "./taskManager.js";
 import * as ImageManager from "./imageManager.js";
 import { projectLogo, deleteProjectLogo } from "./imageManager.js";
 import * as UiManager from "./uiManager.js";
+import * as EventListenerManager from "./eventListenerManager.js";
 
 UiManager.initializeToggles();
 ImageManager.initializeImages();
@@ -51,35 +52,24 @@ projectsElem.addEventListener("click", (e) => {
   }
 });
 
-newProjectAddButton.addEventListener("click", (e) => {
-  e.preventDefault();
-  let projectName = newProjectInput.value;
-  if (projectName == null || projectName === "") {
-    alert("Please enter a project name to add!");
-    return;
-  } else {
-    const project = ProjectManager.createProject(projectName);
-    newProjectInput.value = null;
-    projects.push(project);
-    saveAndRender();
-  }
-});
+newProjectAddButton.addEventListener("click", (e) =>
+  EventListenerManager.createNewProject(
+    e,
+    ProjectManager.createProject,
+    projects,
+    saveAndRender
+  )
+);
 
-newTaskAddButton.addEventListener("click", (e) => {
-  e.preventDefault();
-  let taskName = newTaskInput.value;
-  if (taskName == null || taskName === "") return;
-
-  const task = TaskManager.createTask(taskName);
-  newTaskInput.value = null;
-
-  const selectedProject = projects.find(
-    (project) => project.id === selectedProjectId
-  );
-
-  selectedProject.tasks.push(task);
-  saveAndRender();
-});
+newTaskAddButton.addEventListener("click", (e) =>
+  EventListenerManager.createNewTask(
+    e,
+    TaskManager.createTask,
+    projects,
+    selectedProjectId,
+    saveAndRender
+  )
+);
 
 function saveAndRender() {
   save();
